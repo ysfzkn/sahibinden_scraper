@@ -1,0 +1,14 @@
+{
+  "requires": true,
+  "lockfileVersion": 0,
+  "dependencies": {},
+  "name": "jsapp",
+  "version": "1.0.0",
+  "main": "test.js",
+  "scripts": {
+    "test": "start"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
