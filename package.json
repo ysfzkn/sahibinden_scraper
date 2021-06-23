@@ -1,14 +1,21 @@
 {
   "requires": true,
   "lockfileVersion": 0,
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1"
+  },
   "name": "jsapp",
   "version": "1.0.0",
-  "main": "test.js",
+  "main": "index.js",
   "scripts": {
-    "test": "start"
+    "test": "start",
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
