@@ -22,12 +22,11 @@ function loadads(){
         xhr.onload = function()
         {
             loadImage.style.display="none";
-            console.log(this.responseText);
 
             if(this.status === 200)
             {       
-    
-                let ads = JSON.parse(this.responseText)
+                const res = JSON.parse(this.responseText)
+                let ads = JSON.parse(res.stdout)
                 console.log(ads)
 
                 let html="";

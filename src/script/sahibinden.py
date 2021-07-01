@@ -104,4 +104,4 @@ if __name__ == "__main__":
     with open("result.json", "w") as outfile:
         outfile.write(json_object)
    
-    print("--- %s seconds ---" % (time.time() - start_time))
+    #print("--- %s seconds ---" % (time.time() - start_time))

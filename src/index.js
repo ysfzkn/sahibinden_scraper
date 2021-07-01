@@ -8,7 +8,7 @@ const util = require("util")
 const axios = require("axios")
 
 const exec = util.promisify(child.exec);
-app.use("public",express.static('../public'))
+app.use("/public",express.static(path.join(__dirname,'../public')))
 
 app.get('/v1/spawn/sahibinden' ,async (req, res) =>
 {
@@ -18,7 +18,7 @@ app.get('/v1/spawn/sahibinden' ,async (req, res) =>
             return res.send({error:stderr.toString()})
         }
 
-        res.send({stdout:stdout})
+        res.send({stdout:await JSON.parse(stdout)})
 })
 
 app.get('/', async (req, res) =>
