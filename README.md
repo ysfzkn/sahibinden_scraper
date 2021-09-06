@@ -5,6 +5,7 @@
 * Type this commands for install project and environment for run below;
 * `git clone https://github.com/ysfzkn/sahibinden_scraper.git`
 * `npm install`
+* `pip3 install -r requirements.txt`
 
 # Run
 * `npm start`
