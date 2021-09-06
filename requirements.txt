@@ -1,0 +1,6 @@
+#cat requirements.txt
+pandas
+beautifulsoup4
+lxml
+requests
+openpyxl
