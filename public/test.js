@@ -1,77 +1,97 @@
 
-const searchCar = document.querySelector("#search-car");
+var loadImage = document.querySelector('#loading');
+document.querySelector('#getads').addEventListener('click',loadtable);
+//document.querySelector('#getads').addEventListener('click',loadads);
 
-// const button = document.querySelector("#button");
+let prices = []
 
-document.querySelector('#getads').addEventListener('click',loadads);
+// function loadads()   // eski versiyon request işlemi
+// {
 
+//     const brand = document.getElementById("brand").value;
+//     const model = document.getElementById("model").value;   
+//     console.log(brand);
+//     console.log(model);
+    
+//     console.log("fonksiyon çalışıyor")
 
-function loadads(){
+//     loadImage.style.display = 'block';
 
+//     var url ='/v1/spawn/sahibinden'+'/'+brand+'/'+model ;
+//     console.log(url);
+//     const xhr = new XMLHttpRequest();
+
+//     xhr.open('GET', url, true);
+   
+//     setTimeout(() => 
+//     {
+//         xhr.onload = function()
+//         {
+//             loadImage.style.display="none";
+
+//             if(this.status === 200)
+//             {       
+//                 const res = JSON.parse(this.responseText)
+//                 let ads = JSON.parse(res.stdout)
+//                 console.log(ads)
+
+//                 let html="";
+                
+//                 ads.forEach(ad => {
+//                     console.log(ad.price)
+//                     html+= `<tr>
+//                                 <td id="price">${ad.price}</td>
+//                                 <td id="year">${ad.year}</td>
+//                                 <td id="km">${ad.km}</td>
+//                                 <td id="color">${ad.color}</td>
+//                             </tr>`;
+//                 });             
+    
+//                 document.querySelector('#ads').innerHTML = html;
+    
+//             }
+//         }
+//         xhr.send();
+
+//     }, 1500);
+// }
+
+function loadtable()
+{
+    const brand = document.getElementById("brand").value;
+    const model = document.getElementById("model").value;   
+    console.log(brand);
+    console.log(model);
+    
     console.log("fonksiyon çalışıyor")
-    var loadImage = document.querySelector('#loading');
+    
     loadImage.style.display = 'block';
 
-    var url ='/v1/spawn/sahibinden'
-    const xhr = new XMLHttpRequest();
-
-    xhr.open('GET', url, true);
-   
-    setTimeout(() => 
-    {
-        xhr.onload = function()
+    fetch('/v1/spawn/sahibinden'+"/"+brand+"/"+model, 
+    {credentials: 'include'})
+    .then(response => response.text())
+    .then(data => 
+    { 
+        loadImage.style.display="none";
+        console.log(data)
+        const res = JSON.parse(data)
+        let ads = JSON.parse(res.stdout)
+        console.log(ads)
+        let html="";
+    
+        ads.forEach(ad => 
         {
-            loadImage.style.display="none";
-
-            if(this.status === 200)
-            {       
-                const res = JSON.parse(this.responseText)
-                let ads = JSON.parse(res.stdout)
-                console.log(ads)
-
-                let html="";
-                
-                ads.forEach(ad => {
-                    console.log(ad.price)
-                    html+= `<tr>
-                                <td id="price">${ad.price}</td>
-                                <td id="year">${ad.year}</td>
-                                <td id="km">${ad.km}</td>
-                                <td id="color">${ad.color}</td>
-                            </tr>`;
-                });             
-    
-                document.querySelector('#ads').innerHTML = html;
-    
-            }
-        }
-        xhr.send();
-
-    }, 1500);
+            console.log(ad.price)
+            prices.push(price)
+            html+= `<tr>
+                        <td id="price">${ad.price}</td>
+                        <td id="year">${ad.year}</td>
+                        <td id="km">${ad.km}</td>
+                        <td id="color">${ad.color}</td>
+                    </tr>`;
+        });             
+        
+        document.querySelector('#ads').innerHTML = html;
+    })
+    .catch(err => console.log(err));
 }
-
-searchCar.addEventListener("keypress", (event)=>
-{
-    let text = event.target.value;
-
-    if(text !== "")
-    {
-        console.log(text);
-    }
-
-})
-
-
-// button.addEventListener('click', (updateButton)=>
-// {
-//   if (button.value === 'Start machine') 
-//   {
-//     button.value = 'Stop machine';
-//     alert("The machine has started!");
-//   } 
-//   else 
-//   {
-//     button.value = 'Start machine';
-//     alert('The machine is stopped.');
-//   }
-// })
